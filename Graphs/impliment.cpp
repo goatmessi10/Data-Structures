@@ -37,7 +37,6 @@ public:
 void add(vector<int> arr[],int a,int b)
 {
 	arr[a].push_back(b);
-	arr[b].push_back(a);
 	
 }
 
@@ -89,9 +88,37 @@ while(!q.mempty())
 	}
 
 } 
-
-
 }
+
+int mothernode(vector<int> arr[],bool *visited,int v,int start)
+{   
+    int lastnode;
+    for(int i=0;i<v;i++)
+	{
+		if(!visited[i])
+		{
+	    dfs(arr,visited,v,i);
+	    lastnode=i;
+        }
+    }
+
+    for(int i=0;i<v;i++)
+    {
+      visited[i]=0;
+    }
+    cout<<"mothernode is "<<lastnode<<endl;
+
+    dfs(arr,visited,v,lastnode);
+    
+    for(int i=0;i<v;i++)
+    {
+    	if(!visited[i])
+    		return -1;
+    }
+
+    return lastnode ;
+}
+
 int main(int argc, char const *argv[])
 {
 	 int v,e;
@@ -104,10 +131,11 @@ int main(int argc, char const *argv[])
 	 	cin>>a>>b;
 	 	add(arr,a,b);
 	 } 
-	 print(arr,v);
+	print(arr,v);
 	 bfs(arr,v,0);
-	 cout<<"\n";
+	cout<<"\n";
 	 dfs(arr,visited,v,0);
+	cout<<mothernode(arr,visited,v,0);
 
 	 
 	return 0;
