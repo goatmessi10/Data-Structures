@@ -66,9 +66,6 @@ int main(int argc, char const *argv[])
 	cin>>a>>b;
 	std::vector<int> primeSeive;
 	makePrimeSeive(primeSeive);
-	// for(auto u : primeSeive)
-	// 	cout<<u<<" ";
-	// cout<<endl;
 	vector<int> adj[primeSeive.size()+1];
 	for(int i=0 ; i<primeSeive.size(); i++)
 	{
